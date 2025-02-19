@@ -6,14 +6,22 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 import joblib
 
 pd.set_option('display.max_columns', 1000)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.width', 1000)
-# Carregar os dados
+
 df = pd.read_csv('winequality-red.csv', sep=';')
+print(df.head(10))
+print(df.tail(10))
+print(df.describe())
+print(df.info())
+print(df.shape)
+print(df.isnull().sum())
+# coluna de saida quality
+print(df['quality'].sum())
 
 # Separar features e target
 X = df.drop('quality', axis=1)  # Todas as colunas, exceto 'quality'
@@ -30,10 +38,10 @@ X_test = scaler.transform(X_test)
 # Dicionário para armazenar os modelos e suas acurácias
 models = {
     "KNN": KNeighborsClassifier(n_neighbors=5),
-    "DecisionTree": DecisionTreeClassifier(random_state=1),
+    "DecisionTree": DecisionTreeClassifier(),
     "RandomForest": RandomForestClassifier(max_depth=10, random_state=1),
-    "SVM": SVC(kernel='rbf', random_state=1),
-    "MLP": MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500, random_state=1)
+    "SVM": SVC(kernel='rbf', random_state=1, gamma='auto'),
+    "MLP": MLPClassifier(alpha=1e-5, hidden_layer_sizes=(5, 5), max_iter=1000, random_state=1)
 }
 
 # Treinar e avaliar os modelos
@@ -50,6 +58,13 @@ for name, model in models.items():
     # Calcular acurácia
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Acurácia: {accuracy:.2f}")
+    # print("\nRelatório de Classificação:")
+    # print(classification_report(y_test, y_pred))
+    # Matriz de confusão
+    conf_matrix = confusion_matrix(y_test, y_pred)
+    print("\nMatriz de Confusão:")
+    print(conf_matrix)
+
     # Verificar se é o melhor modelo
     if accuracy > best_accuracy:
         best_accuracy = accuracy

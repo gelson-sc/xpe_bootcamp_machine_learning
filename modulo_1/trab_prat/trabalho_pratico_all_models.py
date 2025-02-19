@@ -9,6 +9,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
+
 pd.set_option('display.max_columns', 1000)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.width', 1000)
@@ -26,6 +27,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 scaler = MinMaxScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
+
 
 # Função para treinar e avaliar modelos
 def train_and_evaluate(model, model_name):
@@ -50,6 +52,7 @@ def train_and_evaluate(model, model_name):
     # plt.ylabel('Real')
     # plt.title(f'Matriz de Confusão - {model_name}')
     # plt.show()
+
 
 # 1. KNN
 knn = KNeighborsClassifier(n_neighbors=5)
