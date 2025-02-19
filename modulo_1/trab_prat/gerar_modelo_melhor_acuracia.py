@@ -21,8 +21,8 @@ print(df.info())
 print(df.shape)
 print(df.isnull().sum())
 # coluna de saida quality
-print(df['quality'].sum())
-
+#print(df['quality'].sum())
+exit(0)
 # Separar features e target
 X = df.drop('quality', axis=1)  # Todas as colunas, exceto 'quality'
 y = df['quality']  # Coluna 'quality' como target
