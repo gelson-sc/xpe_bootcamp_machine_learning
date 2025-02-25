@@ -23,7 +23,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 # Treinar um modelo de SVM
-model_svm = SVC(random_state=42)
+model_svm = SVC(gamma='auto',kernel='rbf', random_state=1)
 model_svm.fit(X_train, y_train)
 
 # Previsões
