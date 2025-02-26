@@ -14,6 +14,7 @@ labels = kmeans.fit_predict(X)
 silhouette_avg = silhouette_score(X, labels)
 print(f"Coeficiente de Silhueta: {silhouette_avg:.2f}")
 
+
 # Cálculo da Pureza
 def purity_score(y_true, y_pred):
     from scipy.stats import mode
@@ -21,9 +22,10 @@ def purity_score(y_true, y_pred):
     majority_sum = 0
     for cluster in clusters:
         mask = y_pred == cluster
-        majority_label = mode(y_true[mask])[0][0]
+        majority_label = mode(y_true[mask], keepdims=True).mode[0]  # Corrigindo a indexação
         majority_sum += np.sum(y_true[mask] == majority_label)
     return majority_sum / len(y_true)
+
 
 purity = purity_score(y_true, labels)
 print(f"Índice de Pureza: {purity:.2f}")
