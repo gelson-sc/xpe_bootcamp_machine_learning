@@ -18,6 +18,7 @@ print(wine_df.isnull().sum())
 
 X_wine = wine_df.drop('class', axis=1)
 y_wine = wine_df['class']
+#print(y_wine)
 X_train_wine, X_test_wine, y_train_wine, y_test_wine = train_test_split(X_wine, y_wine, test_size=0.37, random_state=5762)
 
 # Identificar o número de clusters mais adequado (usando o método do cotovelo)
