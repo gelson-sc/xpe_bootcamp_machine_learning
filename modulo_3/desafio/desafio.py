@@ -39,11 +39,10 @@ print(df.isna().sum())
 df['Gender'] = df['V2'].map({'Female': 0, 'Male': 1})
 df.drop(columns=['V2'], inplace=True)
 print(df.head())
-# Salvar o dataset processado
-# df.to_csv('processed_indian_liver_patient.csv', index=False)
-
 # Tratar valores faltantes (opcional, dependendo da análise anterior)
 df.fillna(df.mean(), inplace=True)
+# Salvar o dataset processado
+df.to_csv('processed_indian_liver_patient.csv', index=False)
 
 # Separar features e target
 X = df.drop('Class', axis=1)
