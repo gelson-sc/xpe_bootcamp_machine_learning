@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold, LeaveOneOut
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.model_selection import cross_val_score
@@ -58,3 +58,26 @@ print("Acurácia: %0.2f (+/- %0.2f)" % (scores_cv.mean(), scores_cv.std() * 2))
 print("Precision: %0.2f (+/- %0.2f)" % (scores_cv_precision.mean(), scores_cv_precision.std() * 2))
 print("Recall: %0.2f (+/- %0.2f)" % (scores_cv_recall.mean(), scores_cv_recall.std() * 2))
 print("F1: %0.2f (+/- %0.2f)" % (scores_cv_f1.mean(), scores_cv_f1.std() * 2))
+
+#Variações na Validação Cruzada
+classifier_cv = RandomForestClassifier(n_estimators= 10, random_state=42)
+
+cv_strat = StratifiedKFold(n_splits = 10)
+
+scores_cv_strat = cross_val_score(classifier_cv, X, y, cv=cv_strat)
+scores_cv_strat_precision = cross_val_score(classifier_cv, X, y, cv=cv_strat, scoring='precision')
+scores_cv_strat_recall = cross_val_score(classifier_cv, X, y, cv=cv_strat, scoring='recall')
+scores_cv_strat_f1 = cross_val_score(classifier_cv, X, y, cv=cv_strat, scoring='f1')
+
+print("Acurácia: %0.2f (+/- %0.2f)" % (scores_cv_strat.mean(), scores_cv_strat.std() * 2))
+print("Precision: %0.2f (+/- %0.2f)" % (scores_cv_strat_precision.mean(), scores_cv_strat_precision.std() * 2))
+print("Recall: %0.2f (+/- %0.2f)" % (scores_cv_strat_recall.mean(), scores_cv_strat_recall.std() * 2))
+print("F1: %0.2f (+/- %0.2f)" % (scores_cv_strat_f1.mean(), scores_cv_strat_f1.std() * 2))
+
+#Leave One Out
+classifier_cv = RandomForestClassifier(n_estimators= 10, random_state=42)
+
+loo = LeaveOneOut()
+scores_loo = cross_val_score(classifier_cv, X, y, cv=loo)
+print("Acurácia: %0.2f (+/- %0.2f)" % (scores_loo.mean(), scores_loo.std() * 2))
+print(scores_loo)
