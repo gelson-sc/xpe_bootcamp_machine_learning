@@ -35,14 +35,20 @@ classifier = SVC()
 f1 = make_scorer(f1_score)
 #instanciando e modelando o grid search com os hiperparametros e a validação definidas.
 grid_cv = GridSearchCV(classifier, hiperparam, cv = cv_strat, scoring = f1)
-print(grid_cv.fit(X, y))
+grid_cv.fit(X, y)
+#print(grid_cv.fit(X, y))
 #vamos olhar para todos os resultados encontrados!
-print('Resumo de todos os resultados encontrados:\n\n', grid_cv.cv_results_)
+# print('Resumo de todos os resultados encontrados:\n\n', grid_cv.cv_results_)
 
 #vamos olhar para os melhores resultados encontrados pelo Grid Search
 print('Melhor resultado f1:', grid_cv.best_score_)
 print('\n\nMelhor configuração de hiperparâmetros:', grid_cv.best_params_)
-
+best_estimator = grid_cv.best_estimator_
+print('best ', best_estimator)
+print('best ', best_estimator.C)
+c= best_estimator.C
+kernel= best_estimator.kernel
+print(c, kernel)
 print( '\n\nConfigurações de todos os hiperparâmetros do melhor estimado encontrado pelo GridSearch: \n', grid_cv.best_estimator_)
 
 print('------------- Vamos agora repetir o processo para o Random -------------------')
