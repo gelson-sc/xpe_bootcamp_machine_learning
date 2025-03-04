@@ -35,6 +35,10 @@ y = df['price']
 print(y.head())
 print(X['bedrooms'].max())
 print(y.max())
+# plt.figure(figsize=(12, 8))
+# sns.heatmap(df.corr(), annot=True, fmt='.2f', cmap='coolwarm')
+# plt.title('Correlation Matrix of Features')
+# plt.show()
 
 
 
