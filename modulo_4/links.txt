@@ -5,3 +5,8 @@ https://www.kaggle.com/code/shivibaijal/house-sales-prediction-ann
 https://www.kaggle.com/code/malakhossam1/houseprice-pred
 https://www.kaggle.com/code/brianolave/house-price-analysis-final-project
 https://www.kaggle.com/code/elfgkk/kc-house
+
+https://github.com/woutervanheeswijk/taxi_environment
+https://www.kaggle.com/code/karthikcs1/reinforcement-learning-taxi-v3-openai
+https://gist.github.com/botforge/64cbb71780e6208172bbf03cd9293553
+https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/
