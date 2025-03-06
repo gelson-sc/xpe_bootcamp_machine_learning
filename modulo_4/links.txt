@@ -14,6 +14,7 @@ https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-o
 https://www.gymlibrary.dev/index.html
 
 # cars
+dataset cars columns ['mpg', 'cylinders', 'cubic inches', 'hp', 'weight lbs', 'time-to-60', 'year', 'brand']
 https://www.kaggle.com/code/hossamahmedsalah/cars-man-ipynb
 https://www.kaggle.com/datasets/meet3010/cars-brand-prediction/code
 https://www.kaggle.com/code/meet3010/decision-tree-for-beginners
