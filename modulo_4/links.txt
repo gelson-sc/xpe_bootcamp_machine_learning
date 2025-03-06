@@ -12,3 +12,8 @@ https://gist.github.com/botforge/64cbb71780e6208172bbf03cd9293553
 https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/
 
 https://www.gymlibrary.dev/index.html
+
+# cars
+https://www.kaggle.com/code/hossamahmedsalah/cars-man-ipynb
+https://www.kaggle.com/datasets/meet3010/cars-brand-prediction/code
+https://www.kaggle.com/code/meet3010/decision-tree-for-beginners
