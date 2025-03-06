@@ -38,3 +38,5 @@ print(df.isna().sum())
 
 X = df.drop(['brand'],axis=1)
 y =  df['brand']
+#clnd_data = df.dropna()
+#data_df2.isnull().mean().sort_values(ascending=False) * 100 # We still see the missing value
