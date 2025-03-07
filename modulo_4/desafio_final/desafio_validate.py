@@ -14,18 +14,24 @@ pd.set_option('display.width', 1000)
 # https://www.kaggle.com/datasets/meet3010/cars-brand-prediction
 df = pd.read_csv('cars.csv')
 print(df.head(5))
-df['brand_id'] = df['brand'].map({' US.': 1, ' Japan.': 2, ' Europe.':3 })
-df = df.drop(['brand'], axis=1)
-print(df.head(5))
+#print(df.isnull().sum())
+#print(df.isna().sum())
+#print(df.info())
+
+# df['brand_id'] = df['brand'].map({' US.': 1, ' Japan.': 2, ' Europe.':3 })
+# df = df.drop(['brand'], axis=1)
+# print(df.head(5))
 df['cubicinches'] = pd.to_numeric(df['cubicinches'], errors='coerce')
 df['weightlbs'] = pd.to_numeric(df['weightlbs'], errors='coerce')
-#print(df.describe())
+print(df.describe())
 #print('duplicated', df.duplicated().sum())
 #print(df.shape)
-#print(df.isnull().sum())
+# print(df.isnull().sum())
+# print(df.isna().sum())
+exit(0)
 # print('Count cubicinches \n', df['cubicinches'].value_counts().sort_values(ascending=False))
 # print('Count year \n', df['year'].value_counts().sort_values(ascending=False))
-print('Count brand \n', df['brand_id'].value_counts().sort_values(ascending=False))
+# print('Count brand \n', df['brand_id'].value_counts().sort_values(ascending=False))
 # trocar brand para int
 #le = LabelEncoder()
 #df['brand_int'] = le.fit_transform(df['brand'])
@@ -42,13 +48,13 @@ df['cubicinches'] = df['cubicinches'].fillna(media_cubicinches)
 df['weightlbs'] = df['weightlbs'].fillna(media_weightlbs)
 print(df.head())
 print(df.isna().sum())
-print(df.info())
-print(df.shape)
-# Correlacao
-print(df.corr(numeric_only=True)['brand_id'].sort_values(ascending=False))
-# Calcular a correlação entre 'bathrooms' e 'sqft_living'
-correlation = df['cubicinches'].corr(df['cylinders'])
-print("Correlação entre cubicinches e cylinders:", correlation)
+print(df.describe())
+# print(df.shape)
+# # Correlacao
+# print(df.corr(numeric_only=True)['brand_id'].sort_values(ascending=False))
+# # Calcular a correlação entre 'bathrooms' e 'sqft_living'
+# correlation = df['cubicinches'].corr(df['cylinders'])
+# print("Correlação entre cubicinches e cylinders:", correlation)
 
 # plt.figure(figsize=(12, 8))
 # dfc = df.drop(['brand'], axis=1)
@@ -56,23 +62,23 @@ print("Correlação entre cubicinches e cylinders:", correlation)
 # plt.title('Correlation Matrix of Features')
 # plt.show()
 
-X = df.drop(['brand_id'],axis=1)
-y =  df['brand_id']
-
-df.to_csv('cars_validade.csv', index=False)
-df_c = pd.read_csv('cars_validade.csv')
-print(df_c.head(10))
-# sns.pairplot(df, hue='brand_id')
-# plt.show()
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-# Aplicar PCA
-pca = PCA(n_components=2)  # Reduzir para 2 dimensões
-X_pca = pca.fit_transform(X_scaled)
-print(X_pca)
-# Ver a variância explicada por cada componente
-print("Variância explicada:", pca.explained_variance_ratio_)
-print("Variância acumulada:", np.sum(pca.explained_variance_ratio_))
-# Converter para DataFrame para melhor visualização
-df_pca = pd.DataFrame(data=X_pca, columns=['PC1', 'PC2'])
-print(df_pca.head())
+# X = df.drop(['brand_id'],axis=1)
+# y =  df['brand_id']
+#
+# df.to_csv('cars_validade.csv', index=False)
+# df_c = pd.read_csv('cars_validade.csv')
+# print(df_c.head(10))
+# # sns.pairplot(df, hue='brand_id')
+# # plt.show()
+# scaler = StandardScaler()
+# X_scaled = scaler.fit_transform(X)
+# # Aplicar PCA
+# pca = PCA(n_components=2)  # Reduzir para 2 dimensões
+# X_pca = pca.fit_transform(X_scaled)
+# print(X_pca)
+# # Ver a variância explicada por cada componente
+# print("Variância explicada:", pca.explained_variance_ratio_)
+# print("Variância acumulada:", np.sum(pca.explained_variance_ratio_))
+# # Converter para DataFrame para melhor visualização
+# df_pca = pd.DataFrame(data=X_pca, columns=['PC1', 'PC2'])
+# print(df_pca.head())

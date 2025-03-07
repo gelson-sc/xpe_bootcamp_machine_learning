@@ -12,20 +12,12 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 # Carregando o dataset
 df = pd.read_csv('cars_validade.csv')
-
-# Visualizando as primeiras linhas
 print("Primeiras linhas do dataset:")
 print(df.head())
-
-# Informações sobre o dataset
 print("\nInformações sobre o dataset:")
 print(df.info())
-
-# Estatísticas descritivas
 print("\nEstatísticas descritivas:")
 print(df.describe())
-
-# Verificando valores ausentes
 print("\nValores ausentes por coluna:")
 print(df.isnull().sum())
 
@@ -65,7 +57,7 @@ normaliza = StandardScaler()
 X_scaled = normaliza.fit_transform(X)
 
 # Aplicando PCA - corrigido para 5 componentes (máximo possível)
-pca = PCA(n_components=5)  # Corrigido para 5 componentes em vez de 7
+pca = PCA(n_components=5)
 X_pca = pca.fit_transform(X_scaled)
 
 # Visualizando a variância explicada
