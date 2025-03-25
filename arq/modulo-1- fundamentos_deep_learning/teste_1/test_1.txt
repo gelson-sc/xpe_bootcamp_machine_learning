@@ -1,0 +1,119 @@
+No dataset classificação Fashion MNIST obtido em from keras.datasets import fashion_mnist
+responda:
+1) O elemento do índice 4000 do vetor de treinamento corresponde a qual classe? 
+Grupo de escolhas da pergunta
+a) Dress.
+b) Trouser.
+c) Shirt.
+d) Bag.C
+
+mostre a resolução em python
+
+2) Quantos são os parâmetros treináveis da VGG16? 
+Grupo de escolhas da pergunta
+a) 35,638,218
+b) 31,638,218
+c) 33,638,218 X
+d) 28,638,218
+
+
+
+3)  Quantos são os parâmetros treináveis da segunda rede criada? 
+Grupo de escolhas da pergunta
+a) 8,735,322
+b) 6,735,322
+c) 9,415,242
+d) 7,735,322X
+
+4) Quantos são os pixels de cada amostra depois de transformadas para serem utilizadas na Vgg-Net?
+Grupo de escolhas da pergunta
+a) 3072.
+b) 1024. X
+c) 784.
+d) 1600.
+
+5)  Caso você tente utilizar a VGG-Net com as imagens originais, sem redimensionamento, qual erro é obtido durante o treinamento?
+Grupo de escolhas da pergunta
+a) Mensagem de erro informando que eram esperadas amostras de tamanho (28x28x3), mas recebeu amostras de tamanho (32x32x3).
+b) Mensagem de erro informando que eram esperadas amostras de tamanho (32x32x1), mas recebeu amostras de tamanho (28x28x3).
+c) Mensagem de erro informando que eram esperadas amostras de tamanho (28x28x1), mas recebeu amostras de tamanho (32x32x3).
+d) Mensagem de erro informando que eram esperadas amostras de tamanho (32x32x3), mas recebeu amostras de tamanho (28x28x1). X
+
+6) Se você utilizar a função de ativação relu na camada de saída da segunda rede, qual o valor obtido na loss?
+Grupo de escolhas da pergunta
+a) 100%
+b) 0.0
+c) Nan X
+d) -- 
+
+7)  Quantos são os pixels de cada amostra para serem utilizados na segunda rede?
+Grupo de escolhas da pergunta
+1024.
+784.
+1600.
+3072.
+
+
+8)  O elemento do índice 4000 do vetor de teste corresponde à qual classe?
+Grupo de escolhas da pergunta
+Sandal.
+T-shirt/top.
+Trouser.
+Pullover.
+
+9)  Se você utilizar a função de ativação relu na camada de saída da segunda rede, qual o valor obtido na loss?
+Grupo de escolhas da pergunta
+100%
+0.0
+Nan
+-- 
+
+
+10) Quantos bias são presentes na segunda rede?
+Grupo de escolhas da pergunta
+6020.
+11828.
+5914.
+10.
+
+
+11)  Quantas camadas do tipo ‘MaxPooling2D’ estão presentes na VGG-Net? 
+Grupo de escolhas da pergunta
+6.
+3.
+4.
+5.
+
+
+12)  Quantas camadas totalmente conectadas estão presentes na VGG-Net? 
+Grupo de escolhas da pergunta
+3.
+1.
+2.
+4.
+
+13)  Execute a Vgg-Net com um batch de 128. Quantas iterações são necessárias para completar uma época?
+Grupo de escolhas da pergunta
+469.
+600.
+326.
+412.
+
+
+14)  Quantas camadas do tipo ‘Conv2D’ estão presentes na VGG-Net? 
+Grupo de escolhas da pergunta
+12.
+14.
+13.
+15.
+
+
+15)  Quantos pesos existem conectando a penúltima e última camadas da segunda rede?
+Grupo de escolhas da pergunta
+20480
+4196252
+4196352
+20490
+
+
+
