@@ -70,7 +70,7 @@ last_layer = model.layers[-1]
 weights = model.get_weights()[-2]
 num_weights = weights.shape[0] * weights.shape[1]
 
-print(f"Penultimate layer shape: {penultimate_layer.output_shape}")
-print(f"Last layer shape: {last_layer.output_shape}")
+print(f"Penultimate layer shape: {penultimate_layer}")#output_shape
+print(f"Last layer shape: {last_layer}")#output_shape
 print(f"Shape of weights connecting these layers: {weights.shape}")
 print(f"Number of weights: {num_weights}")
