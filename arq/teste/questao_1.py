@@ -11,3 +11,5 @@ vgg16Model.summary()
 # Método 4: Listar especificamente os pesos treináveis
 trainable_weights = vgg16Model.trainable_weights
 print(f"Número de tensores de pesos treináveis: {len(trainable_weights)}")
+
+print(f"Nome dos tensores de pesos treináveis: {trainable_weights}")
