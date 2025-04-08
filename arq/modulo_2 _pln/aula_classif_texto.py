@@ -39,7 +39,7 @@ pd.set_option('display.width', 1000)
 # resultados diferentes. A semente pode ser definida para qualquer número.
 np.random.seed(500)
 df = pd.read_csv('corpus.csv', encoding='latin-1')
-df = df.head(100)
+#df = df.head(100)
 """
 PERGUNTA 3
 Qual o tipo de dados da variável Corpus criada?
@@ -113,7 +113,7 @@ Tfidf_vect = TfidfVectorizer(max_features=5000)
 Tfidf_vect.fit(df['text_final'])
 Train_X_Tfidf = Tfidf_vect.transform(Train_X)
 Test_X_Tfidf = Tfidf_vect.transform(Test_X)
-#print(Test_X_Tfidf)
+# print(Test_X_Tfidf)
 
 '''
 PERGUNTA 11
@@ -122,3 +122,83 @@ O que esse vocabulário representa e qual é o seu tipo?
 '''
 print(Tfidf_vect.vocabulary_)
 
+# Naive Bayes
+# Classificador - Algoritmo - NB
+# ajuste o conjunto de dados de treinamento no classificador NB
+Naive = naive_bayes.MultinomialNB()
+Naive.fit(Train_X_Tfidf, Train_Y)
+# prever os rótulos no conjunto de dados de validação
+predictions_NB = Naive.predict(Test_X_Tfidf)
+# Use a função precision_score para obter a precisão
+print("Naive Bayes Accuracy Score -> ", accuracy_score(predictions_NB, Test_Y) * 100)
+
+# SVM
+# Classificador - Algoritmo - SVM
+# ajusta o conjunto de dados de treinamento no classificador
+SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
+SVM.fit(Train_X_Tfidf, Train_Y)
+# prever os rótulos no conjunto de dados de validação
+predictions_SVM = SVM.predict(Test_X_Tfidf)
+# Use a função precision_score para obter a precisão
+print("SVM Accuracy Score -> ", accuracy_score(predictions_SVM, Test_Y) * 100)
+
+"""
+Com base na documentação do Scikilearn e dos algoritmos Naive Bayes e SVM apresentados em nossas aulas,
+codifique um classificador Random Forest
+(consulte a documentação do Scikit-learn e tome como exemplo os classificadores Naive 
+Bayes e SVM implementados no Notebook)
+e responda as seguintes questões:
+"""
+# PERGUNTA 12
+# Considerando os valores de (n_estimators = 10, random_state = 0) e o conjunto de treino e
+# teste como 70/30, o Random Forest teve a sua acurácia prevista na faixa de qual porcentagem?
+Train_X, Test_X, Train_Y, Test_Y = model_selection.train_test_split(df['text_final'], df['label'], test_size=0.3)
+forest = RandomForestClassifier(n_estimators=10, random_state=0)
+forest.fit(Train_X_Tfidf, Train_Y)
+predictions_rdf = forest.predict(Test_X_Tfidf)
+print("Random Forest Accuracy 70/30 Score -> ", accuracy_score(predictions_rdf, Test_Y) * 100)
+
+# PERGUNTA 13
+# Considerando os valores de (n_estimators = 100, random_state = 0) e o conjunto de treino e teste como 80/20,
+# o Random Forest, Naive Bayes e SVM, em relação a acurácia obtida, marque a alternativa correta...
+Train_X, Test_X, Train_Y, Test_Y = model_selection.train_test_split(df['text_final'], df['label'], test_size=0.2)
+forest = RandomForestClassifier(n_estimators=100, random_state=0)
+forest.fit(Train_X_Tfidf, Train_Y)
+predictions_rdf = forest.predict(Test_X_Tfidf)
+print("Random Forest 80/20 Accuracy Score -> ", accuracy_score(predictions_rdf, Test_Y) * 100)
+# PERGUNTA 14
+# Considerando os valores de (n_estimators = 100, random_state = 0) e o conjunto de treino e teste como 80/20
+# em relação ao Random Forest, a seguinte afirmação está correta...
+
+# PERGUNTA 15
+# Pensando na perspectiva de melhoria dos modelos de Machine Learning, podemos avaliar o ajuste de hiper parâmetros,
+# considerando as seguintes técnicas...
+
+
+# PARA SE PENSAR...
+# Como saber se o nosso modelo criado está generalizando de maneira adequada?
+
+# - A base possui um tamanho adequado?
+# - O classificador é adequado para o problema em questão?
+
+
+# Classificador - Algoritmo - RF
+# Needed for the next step in model parameter tuning
+# Train_X, Test_X, Train_Y, Test_Y
+
+# random forest test
+# Instantiate classifier
+### SEU CODIGO AQUI ###
+
+# fit on training data
+### SEU CODIGO AQUI ###
+
+# prever os rótulos no conjunto de dados de validação
+### SEU CODIGO AQUI ###
+
+# Use a função precision_score para obter a precisão
+### SEU CODIGO AQUI ###
+
+# Seeing the metrics
+# print("Accuracy on training set: {:.3f}".format(forest.score(Train_X_Tfidf,Train_Y)))
+# print("Accuracy on test set: {:.3f}".format(forest.score(Test_X_Tfidf, Test_Y)))
