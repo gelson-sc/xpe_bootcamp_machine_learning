@@ -18,7 +18,6 @@ Os alunos deverão desempenhar as seguintes atividades:
 10000 linhas, classificadas em rótulo 1 e 2.
 2. Baixe o Notebook para a prática no link disponível na plataforma do IGTI.
 3. Fazer o download do dataset “corpus.csv” disponível.
-2
 4. Fazer ingestão dos dados no Notebook em que será desenvolvida a prática.
 5. Para a execução da atividade, tome como base a aula de Projeto Prático I baseado
 em técnicas de Machine Learning, apresentado na primeira parte do nosso
