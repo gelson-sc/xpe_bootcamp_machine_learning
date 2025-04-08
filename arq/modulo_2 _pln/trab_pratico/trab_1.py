@@ -15,21 +15,18 @@ from nltk.stem import WordNetLemmatizer
 import string
 import re
 
-# Carregamento do dataset
 df = pd.read_csv('corpus.csv', encoding='latin1')
-# Verificando as primeiras linhas
 print(df.head())
-# Informações sobre o dataframe
 print(df.info())
-# Estatísticas descritivas
 print(df.describe())
 # Verificando a distribuição das classes
 print(df['label'].value_counts())
+
 # Preparação dos dados
 # Removendo linhas com valores ausentes
-df.dropna(inplace=True)
+#df.dropna(inplace=True)
 # Convertendo o texto para minúsculas
-df['text'] = df['text'].str.lower()
+#df['text'] = df['text'].str.lower()
 # Removendo pontuações
 # df['text'] = df['text'].str.replace('[^\w\s]', '')
 # Download de recursos necessários do NLTK
@@ -40,9 +37,7 @@ nltk.download('wordnet')
 
 # Função para pré-processamento de texto
 def preprocess_text(text):
-    # Converter para minúsculas
     text = text.lower()
-    # Remover pontuação
     text = re.sub(r'[^\w\s]', '', text)
     # Tokenização
     tokens = word_tokenize(text)
@@ -61,6 +56,7 @@ df['processed_text'] = df['text'].apply(preprocess_text)
 
 # Verificar resultado do pré-processamento
 print(df[['text', 'processed_text']].head())
+exit(0)
 # Passo 4: Vetorização do texto
 # Dividir os dados em treino e teste
 X_train, X_test, y_train, y_test = train_test_split(
