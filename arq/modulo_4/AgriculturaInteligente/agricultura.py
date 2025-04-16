@@ -55,12 +55,12 @@ model.compile(Adam(learning_rate=0.0001), loss='categorical_crossentropy', metri
 # treinamento do modelo
 history = model.fit(
     batelada_treino,
-    steps_per_epoch=12,
+    steps_per_epoch=13,
     validation_data=batelada_validacao,
     validation_steps=4,
-    epochs=20
-)
-exit(0)
+    epochs=20,
+    verbose=2)
+
 # deve ser utilizada, pois estamos realizando o treinamento via batelada
 # steps_per_epoch = define a quantidade de epocas utilizadas para treinamento, baseando-se no numero de dados utilizados
 # vamos utilizar 120 imagens para treinamento (60 sadias e 60 contaminadas), como a batelada é de 10, temos 120/10 = 12 vezes
@@ -106,12 +106,15 @@ plt.show()  # mostra a imagem
 teste_labels = teste_labels[:, 0]  # transforma sadias (10) em 1 e contaminadas (01) em apenas 0
 
 # realiza a previsão utilizando os dados de teste
-previsao = model.predict_generator(batelada_teste, steps=1, verbose=0)
+previsao = model.predict(batelada_teste, steps=1, verbose=0)
 # como no fit, devemos utilizar o generator, pois estamos utilizando as bateladas de dados
 print(previsao)
 
 # criando a matriz de confusão para comparar os resultados
-matriz_confusao = confusion_matrix(teste_labels, previsao[:, 0])
+# matriz_confusao = confusion_matrix(teste_labels, previsao[:, 0])
+previsao_classes = np.argmax(previsao, axis=1)
+matriz_confusao = confusion_matrix(teste_labels, previsao_classes)
+
 nomes_das_classes = ['contaminadas', 'sadias']
 fig, ax = plot_confusion_matrix(conf_mat=matriz_confusao,
                                 colorbar=True,
@@ -123,12 +126,8 @@ plt.show()
 # -----------------------------------------------------------------------------
 #  Melhorando a prevesão do modelo - TRANSFER LEARNING
 # ----------------------------------------------------------------------------
-
-
 vgg16_model = tf.keras.applications.vgg16.VGG16()  # classe já pre-treinada para ser utilizada em nosso classificador
-
 vgg16_model.summary()  # vamos ver como o modelo do vgg16 foi construído
-
 print(type(vgg16_model))
 
 # transformando o tipo model do vgg16 em sequencial
@@ -146,23 +145,24 @@ print(type(model))
 for layer in model.layers:
     layer.trainable = False
 # colocar em modo de hibernação, garante que, durante o treinamento, os pesos não serão atualizados
-
 # adicionando a ultima camada para a classificação entre 2 grupos de imagens (cachorros ou gatos)
 model.add(Dense(2, activation='softmax'))
-
 # mostra o novo modelo CNN (nosso+vgg16)
 model.summary()
-
 # ----------------------------------------------------------------------------
 #  Inicia o treinamento através dos novos pesos
 # ---------------------------------------------------------------------------
 
 # definindo o otimizador e a função perda
-model.compile(Adam(lr=0.0001), loss='categorical_crossentropy', metrics=['accuracy'])
-
+model.compile(Adam(learning_rate=0.0001), loss='categorical_crossentropy', metrics=['accuracy'])
 # treinamento do modelo
-history = model.fit_generator(batelada_treino, steps_per_epoch=12, validation_data=batelada_validacao,
-                              validation_steps=4, epochs=20, verbose=2)
+history = model.fit(
+    batelada_treino,
+    steps_per_epoch=13,
+    validation_data=batelada_validacao,
+    validation_steps=4,
+    epochs=20,
+    verbose=2)
 
 # previsão utilizando o modelo+VGG16
 
@@ -179,13 +179,16 @@ plt.show()  # mostra a imagem
 teste_labels = teste_labels[:, 0]  # transforma sadias 10 em 1 e contaminadas 01 em apenas 0
 
 # realiza a previsão utilizando os dados de teste
-previsao = model.predict_generator(batelada_teste, steps=1, verbose=0)
+previsao = model.predict(batelada_teste, steps=1, verbose=0)
 # como no fit, devemos utilizar o generator, pois estamos utilizando as bateladas de dados
 print(previsao)
 
 # criando a matriz de confusão para comparar os resultados
-matriz_confusao = confusion_matrix(teste_labels, np.round(
-    previsao[:, 0]))  # a diferença é que a rede gera valores float, então devemos converter
+previsao_classes = np.argmax(previsao, axis=1)
+matriz_confusao = confusion_matrix(teste_labels, previsao_classes)
+
+# a diferença é que a rede gera valores float, então devemos converter
+#matriz_confusao = confusion_matrix(teste_labels, np.round( previsao[:, 0]))
 # em valores inteiros (0,1)
 nomes_das_classes = ['contaminadas', 'sadias']
 fig, ax = plot_confusion_matrix(conf_mat=matriz_confusao,
