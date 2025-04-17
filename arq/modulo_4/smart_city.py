@@ -10,6 +10,7 @@ from pyspark.sql import SparkSession  # utilizada para iniciar a seção do spar
 from pyspark.ml.evaluation import \
     MulticlassClassificationEvaluator  # utilizado para realizar a avaliação de classificadores não binários
 from pyspark.ml.classification import LogisticRegression  # utilizada para realizar a classifcação
+from pyspark.sql.functions import countDistinct, avg, stddev
 
 spark = SparkSession.builder.appName("PrevisaoDeCrimes").getOrCreate()  # inicia a seção do spark
 # %%
@@ -28,7 +29,8 @@ data = data.select([column for column in data.columns if column not in drop_data
 data.show(10, False)
 data.describe().show()
 data.groupby('Category').count().show()
-exit(0)
+data.select(countDistinct("Category")).show()
+
 # aplicando expressões regulares (regular expression)
 re_Tokenizer = RegexTokenizer(inputCol="Descript", outputCol="words", pattern="\\W")
 
@@ -48,9 +50,11 @@ pipeline = Pipeline(stages=[re_Tokenizer, stop_words_remover, count_vectors, lab
 pipeline_fit = pipeline.fit(data)  # aplica as transformações
 newDataset = pipeline_fit.transform(data)
 newDataset.show(10, False)
+
 (trainingData, testData) = newDataset.randomSplit([0.7, 0.3], seed=100)
 print("Comprimento do Treinamento: " + str(trainingData.count()))
 print("Comprimento do Teste: " + str(testData.count()))
+testData.show(10, False)
 # Constrói o modelo de classificação
 regressor = LogisticRegression(maxIter=20, regParam=0.3, elasticNetParam=0)
 # aplica a regressão aos dados de treinamento
