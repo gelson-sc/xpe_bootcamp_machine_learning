@@ -197,11 +197,12 @@ modeloMLP.add(Dense(1, kernel_initializer='normal'))
 modeloMLP.compile(loss='mean_squared_error', optimizer='adam')
 print(modeloMLP.summary())
 # **Realizando a previsão do modelo**
+modeloMLP.fit(X_train, Y_train, epochs=50, batch_size=10, verbose=2)
 previsao = modeloMLP.predict(X_test)
 
 print(previsao.min(), previsao.max())
+
 print(X_test)
-# %%
 # cria o novo dataset completo para o teste
 # agrupa o dataset de teste inicial com os resultados obtidos
 dataTesteNew = pd.merge(dataTesteNew, dataTesteNew.groupby('id', as_index=False)['cycle'].max(), how='left', on='id')
@@ -215,7 +216,7 @@ print(dataTesteNew.head())
 
 # função para retornar os valores em escala anterior
 def totcycles(data):
-    return data['cycles'] / (1 - data['score'])
+    return (data['cycles'] / (1 - data['score']))
 
 
 dataTesteNew['maxpredcycles'] = totcycles(dataTesteNew)  # aplica a função
@@ -224,7 +225,7 @@ print(dataTesteNew.head())
 
 # função para encontrar o tempo de vida dos motores baseados nos dados de entrada
 def RULfunction(data):
-    return data['maxpredcycles'] - data['maxcycles']
+    return (data['maxpredcycles'] - data['maxcycles'])
 
 
 dataTesteNew['RUL'] = RULfunction(dataTesteNew)  # aplica a função de transformação "retorno" dos dados
