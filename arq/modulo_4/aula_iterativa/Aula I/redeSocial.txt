@@ -1,0 +1,63 @@
+// Deletando
+
+MATCH (n)
+DETACH DELETE n
+
+//query
+
+MATCH (n) WHERE n.nome="Tulio" OR n.email= "pele@example.com" RETURN n
+
+
+//Usuários
+
+CREATE (tulio:USUARIO {nome: "Tulio", email:"tulio@example.com"}) RETURN tulio
+CREATE CONSTRAINT FOR  (usuario:USUARIO) REQUIRE  usuario.email IS UNIQUE
+CREATE (neymar:USUARIO {nome: "Neymar Jr", email:"neymar@example.com"})
+CREATE (pele:USUARIO {nome: "Edson Arantes", email:"pele@example.com"})
+CREATE (maradona:USUARIO {nome: "Diego Armando", email:"maradona@example.com"})
+CREATE (marta:USUARIO {nome: "Marta Vieira", email:"marta@example.com"})
+
+
+//Post
+
+MATCH (tulio:USUARIO {email: "tulio@example.com"}) CREATE (tulio)<-[r:CRIADO_POR]-(post:POST { titulo: "Primeiro post.",conteudo: "Eu amo o Neo4j."}) RETURN tulio, r, post
+MATCH (tulio:USUARIO {email: "tulio@example.com"}) CREATE (tulio)<-[r:CRIADO_POR]-(post:POST { titulo: "Segundo post.",conteudo: "Quem é o melhor de todos os tempos?"}) 
+MATCH (pele:USUARIO {email: "pele@example.com"}) CREATE (pele)<-[r:CRIADO_POR]-(post:POST { titulo: "Eu sei quem é o melhor.",conteudo: "Sou o melhor de todos."}) 
+MATCH (marta:USUARIO {email: "marta@example.com"}) CREATE (marta)<-[r:CRIADO_POR]-(post:POST { titulo: "Ele e o melhor.",conteudo: "Pelé é o melhor de todos."}) 
+MATCH (maradona:USUARIO {email: "maradona@example.com"}) CREATE (maradona)<-[r:CRIADO_POR]-(post:POST { titulo: "Maradona e o melhor.",conteudo: "Maradona é melhor que pelé."})
+MATCH (maradona:USUARIO {email: "maradona@example.com"}) CREATE (maradona)<-[r:CRIADO_POR]-(post:POST { titulo: "Maradona o rei.",conteudo: "Maradona é o melhor de todos."}) 
+MATCH (neymar:USUARIO {email: "neymar@example.com"}) CREATE (neymar)<-[r:CRIADO_POR]-(post:POST { titulo: "Eu sou o rei.",conteudo: "Neymar é o melhor de todos"}) 
+MATCH (neymar:USUARIO {email: "neymar@example.com"}) CREATE (neymar)<-[r:CRIADO_POR]-(post:POST { titulo: "Neymar e o rei.",conteudo: "Ninguém é melhor que o Neymar"}) 
+
+//Seguidores
+MATCH (tulio:USUARIO {email: "tulio@example.com"}), (pele:USUARIO {email: "pele@example.com"}) CREATE (pele)-[r:FOLLOWS]->(tulio) RETURN tulio, r, pele
+MATCH (pele:USUARIO {email: "pele@example.com"}), (tulio:USUARIO {email: "tulio@example.com"}) CREATE (tulio)-[r:FOLLOWS]->(pele)
+MATCH (marta:USUARIO {email: "marta@example.com"}), (pele:USUARIO {email: "pele@example.com"}) CREATE (marta)-[r:FOLLOWS]->(pele)
+MATCH (marta:USUARIO {email: "marta@example.com"}), (maradona:USUARIO {email: "maradona@example.com"}) CREATE (marta)-[r:FOLLOWS]->(maradona)
+MATCH (neymar:USUARIO {email: "neymar@example.com"}), (pele:USUARIO {email: "pele@example.com"}) CREATE (neymar)-[r:FOLLOWS]->(pele)
+MATCH (neymar:USUARIO {email: "neymar@example.com"}), (marta:USUARIO {email: "marta@example.com"}) CREATE (neymar)-[r:FOLLOWS]->(marta)
+MATCH (neymar:USUARIO {email: "neymar@example.com"}), (maradona:USUARIO {email: "maradona@example.com"}) CREATE (neymar)-[r:FOLLOWS]->(maradona)
+MATCH (maradona:USUARIO {email: "maradona@example.com"}), (marta:USUARIO {email: "marta@example.com"}) CREATE (maradona)-[r:FOLLOWS]->(marta)
+MATCH (maradona:USUARIO {email: "maradona@example.com"}), (neymar:USUARIO {email: "neymar@example.com"}) CREATE (maradona)-[r:FOLLOWS]->(neymar)
+
+
+//Curtidas
+MATCH (tulio:USUARIO {email: "tulio@example.com"}), (p:POST{titulo:"Ele e o melhor."}) CREATE (tulio)-[r:CURTIU]->(p) RETURN tulio,p.conteudo
+MATCH (tulio:USUARIO {email: "tulio@example.com"}), (p:POST{titulo:"Eu sei quem é o melhor."}) CREATE (tulio)-[r:CURTIU]->(p) 
+MATCH (marta:USUARIO {email: "marta@example.com"}), (p:POST{titulo:"Eu sei quem é o melhor."}) CREATE (marta)-[r:CURTIU]->(p) 
+MATCH (neymar:USUARIO {email: "neymar@example.com"}), (p:POST{titulo:"Eu sou o rei."}) CREATE (neymar)-[r:CURTIU]->(p) 
+MATCH (neymar:USUARIO {email: "neymar@example.com"}), (p:POST{titulo:"Eu sei quem é o melhor."}) CREATE (neymar)-[r:CURTIU]->(p) 
+MATCH (pele:USUARIO {email: "pele@example.com"}), (id:POST{id:27}) CREATE (neymar)-[r:CURTIU]->(p)
+MATCH (maradona:USUARIO {email: "maradona@example.com"}), (p:POST) WHERE ID(p)=22 CREATE (maradona)-[r:CURTIU]->(p)
+
+
+Match (n)-[r]->(m)
+Return n,r,m
+
+
+
+
+
+
+
+
