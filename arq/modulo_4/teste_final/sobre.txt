@@ -1,0 +1,38 @@
+Detecção de Quedas
+
+O desafio deste conjunto de dados é classificar diferentes movimentos para detectar
+quando alguém está caindo. Isso deve ajudar principalmente a prevenir
+quedas em pessoas idosas. Os dados foram coletados por
+voluntários que realizaram vários movimentos enquanto usavam sensores corporais.
+Eu baixei os dados daqui: https://www.kaggle.com/pitasr/falldata/version/1#
+Os autores publicaram seus resultados aqui:
+    Özdemir, Ahmet Turan, e Billur Barshan. “Detecting Falls with Wearable Sensors
+    Using Machine Learning Techniques.” Sensors
+    (Basel, Switzerland) 14.6 (2014): 10691–10708. PMC. Web. 23 Apr. 2017.
+
+Os autores testaram várias técnicas de aprendizado de máquina e atingiram uma precisão de 95%.
+Vamos ver se conseguimos acompanhar esse desempenho.
+
+Informações gerais sobre o conjunto de dados, o que cada coluna representa e o significado
+dos códigos da coluna ACTIVITY:
+
+Conjunto de dados de detecção de quedas de hospitais chineses, com pacientes idosos.
+Explicação das Colunas:
+Coluna	Descrição
+ACTIVITY	Classificação da atividade realizada no momento da coleta dos dados.
+TIME	Tempo de monitoramento (timestamp ou duração da atividade).
+SL	Nível de açúcar no sangue (provavelmente glicose).
+EEG	Taxa de atividade elétrica cerebral (eletroencefalograma).
+BP	Pressão arterial.
+HR	Frequência cardíaca (batimentos por minuto).
+CIRCULATION	Circulação sanguínea (indicador geral de fluxo ou saúde circulatória).
+Valores da Coluna ACTIVITY:
+Código	Atividade
+0	Em pé (Standing)
+1	Andando (Walking)
+2	Sentado (Sitting)
+3	Caindo (Falling)
+4	Cãibras (Cramps)
+5	Correndo (Running)
+
+Se quiser, posso te ajudar a explorar o dataset, fazer visualizações ou iniciar um modelo de detecção de quedas com esses dados. Quer seguir por esse caminho?
