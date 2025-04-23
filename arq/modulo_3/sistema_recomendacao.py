@@ -1,0 +1,19 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+# distancia
+from scipy.spatial.distance import pdist, hamming, cosine
+
+
+def euclidean_distance(x: np.array, y: np.array):
+    return np.sqrt(np.sum((x - y) ** 2))
+
+
+x = np.array([1, 2])
+y = np.array([5, 5])
+d = euclidean_distance(x, y)
+print('a distancia euclidiana de x e y:', d, type(d))
+# calculo normas
+nrm = np.linalg.norm(x-y)
+print(nrm, type(nrm))
