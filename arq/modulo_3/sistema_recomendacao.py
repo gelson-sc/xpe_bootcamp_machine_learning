@@ -36,3 +36,24 @@ print('distancia de hamming normalizada:', hn, type(hn))
 # funcao pacote scipy
 hnn = hamming(x, y)
 print('distancia de hamming normalizada f:', hnn, type(hnn))
+
+# produto interno
+x = np.array([1, 0, 0, 1, 1, 1]).reshape(-1, 1)
+y = np.array([1, 1, 0, 0, 1, 0]).reshape(-1, 1)
+# produto interno T -> transposto
+print(x.T @ y)
+# produto interno
+print(np.sum(x * y))
+# funcoes python
+print(np.dot(x.T, y))
+print(np.dot(x.ravel(), y.ravel()))
+
+
+def cosine_similarity(x: np.array, y: np.array):
+    return np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
+
+
+x = np.array([1, 0, 0, 1, 1, 1]).reshape(-1, 1)
+y = np.array([1, 1, 0, 0, 1, 0]).reshape(-1, 1)
+c = cosine_similarity(x.ravel(), y.ravel())
+print(c, type(c))
