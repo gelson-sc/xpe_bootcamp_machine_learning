@@ -2,7 +2,32 @@ import numpy as np
 
 
 def main():
-    pass
+    # # questao 1
+    # x = np.array([0, 1, 4])
+    # y = np.array([5, 3, -1])
+    # print('1', euclidean_distance(x, y))
+    #
+    # # questao 2
+    # x2 = np.array([0, 1, 4])
+    # y2 = np.array([0, 1, 4])
+    # print('2', euclidean_distance(x2, y2))
+    # questao 4
+    # x = np.array([1, 0, 0, 1, 0, 0])
+    # y = np.array([1, 1, 0, 0, 0, 0])
+    # print('4.', hamming_distance(x, y))
+    # print('5.', hamming_distance(x, y, True))
+
+    x = np.array([1, 0])
+    y = np.array([0, 1])
+    print('6.', cosine_similarity(x, y))
+
+    x = np.array([1, 0])
+    y = np.array([2, 0])
+    print('7.', cosine_similarity(x, y))
+
+    x = np.array([1, 0])
+    y = np.array([-1, 0])
+    print('8.', cosine_similarity(x, y))
 
 
 def euclidean_distance(x: np.array, y: np.array):
