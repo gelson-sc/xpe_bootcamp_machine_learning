@@ -1,0 +1,38 @@
+a. Qual o valor da similaridade de cossenos entre os usuários U1 e U2?
+R:
+b. Qual o valor da similaridade de cossenos entre os usuários U1 e U3?
+R:
+c. Qual o valor da similaridade de cossenos entre os usuários U1 e U4?
+R:
+d. Qual o valor da similaridade de cossenos entre os usuários U1 e U5?
+R:
+e. Qual o valor da similaridade de cossenos centralizada entre os usuários U1 e U2?
+R:
+f. Qual o valor da similaridade de cossenos centralizada entre os usuários U1 e U3?
+R:
+g. Qual o valor da similaridade de cossenos centralizada entre os usuários U1 e U4?
+R:
+h. Qual o valor da similaridade de cossenos centralizada entre os usuários U1 e U5?
+R:
+i. Considerando a similaridade de cossenos centralizada, qual o usuário é mais similar ao usuário U1?
+R:
+j. Considerando a similaridade de cossenos centralizada, qual o segundo usuário mais similar ao usuário U1?
+R:
+k. Considerando uma filtragem colaborativa User-User, com agregação pela média simples e número de vizinhos igual a 2,
+qual a predição para a avaliação do usuário U1 ao item I2?
+
+l. Considerando uma filtragem colaborativa User-User, com agregação pela média simples e número de vizinhos igual a 2,
+qual a predição para a avaliação do usuário U1 ao item I1? Suponha que a avaliação (U1, I1) seja desconhecida.
+R:
+m. Qual o erro absoluto (|real-previsto|) da predição da tupla (U1, I1), considerando uma filtragem
+colaborativa User-User, com agregação pela média simples e número de vizinhos igual a 2?
+R:
+n. Considere um sistema de recomendação cuja predição r é dada por r = b_u + b_i - mu, onde b_u é a média simples
+das avaliações conhecidas do usuário u, b_i é a média simples das avaliações conhecidas do item i, mu é a média simples
+de todas avaliações conhecidas. Quais os valores de b_u, b_i e mu para o usuário U1 e item I2?
+R:
+o. Considere um sistema de recomendação cuja predição r é dada por r = b_u + b_i - mu, onde b_u é a média simples
+das avaliações conhecidas do usuário u, b_i é a média simples das avaliações conhecidas do item i,
+mu é a média simples de todas as avaliações conhecidas. Considerando este modelo, qual a predição para a
+avaliação do usuário U1 ao item I2?
+R:
