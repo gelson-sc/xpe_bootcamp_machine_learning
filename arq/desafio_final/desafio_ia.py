@@ -21,7 +21,7 @@ sns.set(style='whitegrid')
 
 # Carregando o dataset
 print("Carregando o dataset...")
-df_cartoes = pd.read_csv('/home/gelson/datasets/creditcard.csv')
+df_cartoes = pd.read_csv('/home/gelson/datasets/creditcard_original.csv')
 
 # ============== ANÁLISE EXPLORATÓRIA DOS DADOS (EDA) ===============
 
